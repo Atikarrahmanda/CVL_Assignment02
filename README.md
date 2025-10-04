@@ -3,7 +3,7 @@
 Tujuan utama dari tugas ini adalah mendeteksi lokasi plat nomor mobil secara otomatis, kemudian mengevaluasi hasilnya menggunakan metrik Akurasi (Accuracy) dan Intersection over Union (IoU).
 
 ## 1. Input Data
-- Dataset berisi beberapa 5 gambar mobil yang diperoleh dari kaggle
+- Dataset berisi 5 gambar mobil yang diperoleh dari kaggle
   <img width="1512" height="458" alt="image" src="https://github.com/user-attachments/assets/ac1d3f02-246f-4829-8325-8a4c33f6a322" />
 
   
