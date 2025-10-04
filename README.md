@@ -4,14 +4,24 @@ Tujuan utama dari tugas ini adalah mendeteksi lokasi plat nomor mobil secara oto
 
 ## 1. Input Data
 - Dataset berisi beberapa 5 gambar mobil yang diperoleh dari kaggle
-  ![image1 (1)](https://github.com/user-attachments/assets/78d43298-e73b-4f30-89cd-39f17a6da86e)  ![image2](https://github.com/user-attachments/assets/61ebe944-3443-4132-ae08-18e4f45b2831) ![image3 (1)](https://github.com/user-attachments/assets/8870368d-3c4d-46dc-913b-9d8f32060b49) ![image4 (1)](https://github.com/user-attachments/assets/40dc4d3e-d1c2-4555-b603-e2abfad6004c) ![image5 (1)](https://github.com/user-attachments/assets/be2b73d2-71ca-4323-a656-52faf767b4e1)
+  <img width="1512" height="458" alt="image" src="https://github.com/user-attachments/assets/ac1d3f02-246f-4829-8325-8a4c33f6a322" />
+
   
 - Satu gambar plat digunakan sebagai **template** yang akan dicocokkan dengan seluruh gambar pada dataset.
 ![template (1)](https://github.com/user-attachments/assets/3b9b3535-8eb9-4519-9bce-a360e14ea41c)
 
 ## 2. Langkah-Langkah Proses
 ### a. Menentukan posisi ground truth
-Posisi Ground truth dicari secara manual
+Posisi Ground truth ditentukan secara manual
+ ```python
+ground_truth = {
+    "image1.jpg": (1092, 1740, 708, 168),
+    "image2.jpg": (1062, 1860, 828, 174),
+    "image3.jpg": (1110, 1818, 750, 204),
+    "image4.jpg": (356, 538, 318, 108),
+    "image5.jpg": (668, 610, 727, 142),
+}
+```
 <img width="727" height="997" alt="image" src="https://github.com/user-attachments/assets/e44dc1c1-03c6-4893-8200-2f26c956e1a9" />
 
 ### b. Membaca gambar dan template, lalu mengubah keduanya menjadi grayscale untuk memudahkan perhitungan korelasi.
@@ -71,8 +81,6 @@ def compute_iou(boxA, boxB):
 ```
 
 ### f. Menghitung Accuracy dan Rata-rata IoU sebagai evaluasi akhir
-<img width="624" height="285" alt="image" src="https://github.com/user-attachments/assets/489d3f3d-62a4-4a73-8822-7356f9cc5c85" />
-
 Akurasi dihitung dari jumlah gambar dengan IoU ≥ 0.5 dibandingkan total gambar, sedangkan rata-rata IoU menunjukkan performa keseluruhan sistem.
 ```python
 correct = sum(1 for r in results if r["IoU"] >= 0.5)
@@ -82,5 +90,13 @@ avg_iou = np.mean([r["IoU"] for r in results if r["IoU"] > 0])
 print(f"Accuracy : {accuracy*100:.2f}%")
 print(f"Average IoU : {avg_iou:.3f}")
 ```
+<img width="624" height="285" alt="image" src="https://github.com/user-attachments/assets/489d3f3d-62a4-4a73-8822-7356f9cc5c85" />
+
+##Analisis Hasil
+Metode Template Matching berhasil mendeteksi posisi plat nomor pada sebagian besar gambar.
+Performa terbaik dicapai saat ukuran dan orientasi plat mirip dengan template.
+Penurunan akurasi terjadi pada gambar dengan pencahayaan berbeda atau perbedaan sudut kamera.
+Dengan rata-rata IoU 0.63 dan akurasi 80%, metode ini berhasil digunakan untuk mendeteksi plat nomor mobil tanpa menggunakan model deteksi modern.
+Pendekatan ini sederhana namun cukup efektif untuk dataset kecil dan kondisi terkontrol.
 
 
