@@ -50,7 +50,7 @@ min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 best_box = (max_loc[0], max_loc[1], tW, tH)
 ```
 
-### e. Menggambar bounding box Ground Truth (merah) dan Prediksi (hijau)
+### e. Bounding box Ground Truth (merah) dan Prediksi (hijau)
 Setelah posisi ditemukan, sistem menggambar dua kotak:
 <img width="1798" height="1133" alt="image" src="https://github.com/user-attachments/assets/b5d16982-8848-4ac2-9279-8b4387985157" />
 
@@ -92,7 +92,7 @@ print(f"Average IoU : {avg_iou:.3f}")
 ```
 <img width="624" height="285" alt="image" src="https://github.com/user-attachments/assets/489d3f3d-62a4-4a73-8822-7356f9cc5c85" />
 
-##Analisis Hasil
+## Analisis Hasil
 Metode Template Matching berhasil mendeteksi posisi plat nomor pada sebagian besar gambar.
 Performa terbaik dicapai saat ukuran dan orientasi plat mirip dengan template.
 Penurunan akurasi terjadi pada gambar dengan pencahayaan berbeda atau perbedaan sudut kamera.
